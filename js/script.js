@@ -10,7 +10,8 @@ for(let activeLink of activeLinks){
 }
 
  /* add class 'active' to the clicked link */
-
+ console.log('clickedElement:', clickedElement);
+ activeLink.classList.add('active');
 
  /* remove class 'active' from all articles */
  const activeArticles = document.querySelectorAll('.active');
