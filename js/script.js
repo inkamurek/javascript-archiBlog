@@ -12,8 +12,11 @@ for(let activeLink of activeLinks){
 }
 
  /* add class 'active' to the clicked link */
- console.log('clickedElement:', clickedElement);
- activeLink.classList.add('active');
+//  console.log('clickedElement:', clickedElement);
+//  const clickedElement = this;
+ for(let activeLink of activeLinks){
+    activeLink.classList.add('active');
+   }
 
  /* remove class 'active' from all articles */
  const activeArticles = document.querySelectorAll('.active');
@@ -23,18 +26,21 @@ for(let activeArticle of activeArticles){
 
  /* get 'href' attribute from the clicked link */
 
+ const articleSelector = clickedElement.getAttribute('href')
+console.log(articleSelector);
 
  /* find the correct article using the selector (value of 'href'
 attribute) */
+const targetArticle = document.querySelector(articleSelector)
+console.log(targetArticle)
 
-
- /* add class 'active' to the correct article */
-
-
+//  /* add class 'active' to the correct article */
+//  console.log('clickedElement:', targetArticle);
+ targetArticle.classList.add('active')
 }
 
-const links = document.querySelectorAll('.titles a');
 
+const links = document.querySelectorAll('.titles a');
 for(let link of links){
     link.addEventListener('click', titleClickHandler);
    }
