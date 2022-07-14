@@ -15,7 +15,7 @@ for(let activeLink of activeLinks){
 //  console.log('clickedElement:', clickedElement);
 //  const clickedElement = this;
  for(let activeLink of activeLinks){
-    activeLink.classList.add('.active');
+    activeLink.classList.add('active');
    }
 
  /* remove class 'active' from all articles */
