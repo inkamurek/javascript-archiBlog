@@ -25,7 +25,6 @@ function titleClickHandler(event) {
   }
 
   /* get 'href' attribute from the clicked link */
-
   const articleSelector = clickedElement.getAttribute('href');
   console.log(articleSelector);
 
@@ -112,23 +111,61 @@ generateTitleLinks();
 function generateTags(){
   /* find all articles */
 
+  const articles = document.querySelectorAll('article');
+
   /* START LOOP: for every article: */
+  for (let article of articles) {
+    console.log(article);
+  
+  /* find tags wrapper */
+  const XX = article.querySelector(optArticleTagsSelector);
+  console.log(XX);
 
-    /* find tags wrapper */
+  /* make html variable with empty string */
+  XX.innerHTML = '';
+  let html = '';
 
-    /* make html variable with empty string */
+  /* get tags from data-tags attribute */
+  const articleTags = article.getAttribute('data-tags');
+  console.log(articleTags);
 
-    /* get tags from data-tags attribute */
+  /* split tags into array */
+  // .split(' ')
+  const articleTagsArray = articleTags.split(' ');
+  console.log(articleTagsArray);
 
-    /* split tags into array */
+    
 
-    /* START LOOP: for each tag */
+  /* START LOOP: for each tag */
+for (let tag of articleTagsArray){
+console.log(tag)
 
-      /* generate HTML of the link */
+
+/* generate HTML of the link */
 
       /* add generated code to html variable */
 
     /* END LOOP: for each tag */
+
+     /* create HTML of the link */
+     const linkHTML =
+     '<li><a href="#' +
+     tag +
+     '"><span>' +
+     tag +
+     '</span></a></li>';
+     console.log(linkHTML);
+ 
+     // /* insert link into titleList */  
+     //   titleList.insertAdjacentHTML("afterbegin", linkHTML);
+     /* insert link into html variable */
+     html = html + linkHTML;
+ 
+     console.log(html);
+
+}
+
+}
 
     /* insert HTML of all the links into the tags wrapper */
 
