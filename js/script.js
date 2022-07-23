@@ -134,12 +134,6 @@ function generateTags() {
     for (let tag of articleTagsArray) {
       console.log(tag);
 
-      /* generate HTML of the link */
-
-      /* add generated code to html variable */
-
-      /* END LOOP: for each tag */
-
       /* create HTML of the link */
       const linkHTML = '<li><a href="#' + tag + '"><span>' + tag + "</span></a></li>";
 
@@ -151,9 +145,6 @@ function generateTags() {
 
     tagList.innerHTML = html;
   }
-  /* insert HTML of all the links into the tags wrapper */
-
-  /* END LOOP: for every article: */
 }
 
 generateTags();
@@ -191,12 +182,10 @@ function tagClickHandler(event) {
   }
 
   /* find all tag links with "href" attribute equal to the "href" constant */
-  const activeHrefTags = document.querySelectorAll('a.active[href^="#tag-"]');
-  'a[href="' + href + '"]'
-
+  const activeHrefTags = document.querySelectorAll('a.active[href^="#tag-' + href + '"]');
+  
   /* START LOOP: for each found tag link */
 for (let activeHrefTag of activeHrefTags){
-    
 
   /* add class active */
   activeHrefTag.classList.add("active");
@@ -204,18 +193,30 @@ for (let activeHrefTag of activeHrefTags){
   /* END LOOP: for each found tag link */
 }
   /* execute function "generateTitleLinks" with article selector as argument */
-
-
   generateTitleLinks('[data-tags~="' + tag + '"]');
-  function generateTitleLinks(customSelector = ''){
-    const articles = document.querySelectorAll(optArticleSelector + customSelector);
+}
 
-  }
 function addClickListenersToTags() {
   /* find all links to tags */
+const allTags = document.querySelectorAll(".post-tags a");
+console.log(allTags)
+
   /* START LOOP: for each link */
+  for (let allTag of allTags){
+    console.log(allTag)
+
   /* add tagClickHandler as event listener for that link */
+  allTag.addEventListener("click", titleClickHandler);
+  
+
   /* END LOOP: for each link */
+  }
 }
-}
-// // addClickListenersToTags();
+
+addClickListenersToTags();
+
+
+
+// function generateTitleLinks(customSelector = ''){
+//   const articles = document.querySelectorAll(optArticleSelector + customSelector);
+// }
