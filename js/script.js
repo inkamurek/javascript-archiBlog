@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 'use strict';
 
 function titleClickHandler(event) {
@@ -42,7 +41,7 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optAuthorListSelector = '.authors .list';
+  optAuthorListSelector = '.authors.list';
 
 
 function generateTitleLinks(customSelector = '') {
@@ -140,7 +139,7 @@ function generateTags() {
 
       /* create HTML of the link */
       const tagHTML =
-        '<li><a href="#' + tag + '"><span>' + tag + '</span></a></li>';
+        '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
 
       /* insert link into html variable */
       html = html + tagHTML;
@@ -203,7 +202,7 @@ console.log ('activeHrefTags:' , activeHrefTags);
 
 function addClickListenersToTags() {
   /* find all links to tags */
-  const tagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
+  const tagLinks = document.querySelectorAll('[href^="#tag-"]');
   console.log('tagLinks' , tagLinks);
 
   /* START LOOP: for each link */
@@ -222,20 +221,21 @@ addClickListenersToTags();
 function generateAuthors() {
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
-  console.log('articles:', articles); 
+  console.log('articles:', articles);
+  const authorList = document.querySelector(optAuthorListSelector);
+
+  /* make html variable with empty string */
+  let html = '';
+
   /* START LOOP: for every article: */
   for (let article of articles) {
-    /* find tags wrapper */
-    const authorList = article.querySelector(optArticleAuthorSelector).innerHTML;
-    console.log('auhtorList:', authorList);
+    /* find author */
+    const authorWrapper = article.querySelector(optArticleAuthorSelector);
+    console.log('auhtorList:', authorWrapper);
   
-    /* make html variable with empty string */
-    let html = '';
-    
-
     /* get tags from data-tags attribute */
     // const author = article.getAttribute('class');
-    const author = authorList.replace('by ', '');
+    const author = authorWrapper.innerHTML.replace('by ', '');
 
   console.log('author:', author);
 
@@ -251,8 +251,10 @@ function generateAuthors() {
 
     console.log('html:' , html);
   
-    // authorList.innerHTML = html;
+    
   }
+
+  authorList.innerHTML = html;
 }
 
 generateAuthors();
@@ -321,67 +323,67 @@ addClickListenersToAuthors();
 
 // ----------------------------------------------------------------------------------------------- CHMURA TAGÓW
 
-const optTagsListSelector = '.tags .list';
+// const optTagsListSelector = '.tags .list';
 
-console.log('optTagsListSelector' , optTagsListSelector);
+// console.log('optTagsListSelector' , optTagsListSelector);
 
-function generateTags(){
-  /* [NEW] create a new variable allTags with an empty object*/
-  let allTags = {};
+// function generateTags(){
+//   /* [NEW] create a new variable allTags with an empty object*/
+//   let allTags = {};
 
-  /* find all articles */
+//   /* find all articles */
 
-  /* START LOOP: for every article: */
+//   /* START LOOP: for every article: */
 
-    /* find tags wrapper */
+//     /* find tags wrapper */
 
-    /* make html variable with empty string */
+//     /* make html variable with empty string */
 
-    /* get tags from data-tags attribute */
+//     /* get tags from data-tags attribute */
 
-    /* split tags into array */
+//     /* split tags into array */
 
-    /* START LOOP: for each tag */
+//     /* START LOOP: for each tag */
 
-      /* generate HTML of the link */
+//       /* generate HTML of the link */
 
-      /* add generated code to html variable */
+//       /* add generated code to html variable */
 
-      /* [NEW] check if this link is NOT already in allTags */
-      // eslint-disable-next-line no-undef
-      if(!allTags.hasOwnProperty(tag)) {
+//       /* [NEW] check if this link is NOT already in allTags */
+//       // eslint-disable-next-line no-undef
+//       if(!allTags.hasOwnProperty(tag)) {
 
-        /* [NEW] add tag to allTags object */
-        allTags[tag] = 1;
-      } else {
-        allTags[tag]++;
-      }
+//         /* [NEW] add tag to allTags object */
+//         allTags[tag] = 1;
+//       } else {
+//         allTags[tag]++;
+//       }
 
-    /* END LOOP: for each tag */
+//     /* END LOOP: for each tag */
 
-    /* insert HTML of all the links into the tags wrapper */
+//     /* insert HTML of all the links into the tags wrapper */
 
-  /* END LOOP: for every article: */
+//   /* END LOOP: for every article: */
 
-  /* [NEW] find list of tags in right column */
-  const tagList = document.querySelector(optTagsListSelector);
+//   /* [NEW] find list of tags in right column */
+//   const tagList = document.querySelector(optTagsListSelector);
 
-  /* [NEW] add html from allTags to tagList */
-  // tagList.innerHTML = allTags.join(' ');
-  // console.log(allTags);
+//   /* [NEW] add html from allTags to tagList */
+//   // tagList.innerHTML = allTags.join(' ');
+//   // console.log(allTags);
 
-  const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams:', tagsParams)
+//   const tagsParams = calculateTagsParams(allTags);
+//   console.log('tagsParams:', tagsParams)
   
-   /* [NEW] create variable for all links HTML code */
-   let allTagsHTML = '';
+//    /* [NEW] create variable for all links HTML code */
+//    let allTagsHTML = '';
 
-    /* [NEW] START LOOP: for each tag in allTags */
-   for(let tag in allTags){
-       /* [NEW] generate code of a link and add it ti allTagsHTML */
-       allTagsHTML += tag + ' (' + allTags[tag] + ')' ;
-   /* [NEW] END LOOP: for each tag in allTags: */
-  } 
-   /* [NEW] add html from allTagshTML to tagList */
-   tagList.innerHTML = allTagsHTML;
-}
+//     /* [NEW] START LOOP: for each tag in allTags */
+//    for(let tag in allTags){
+//        /* [NEW] generate code of a link and add it ti allTagsHTML */
+//        allTagsHTML += tag + ' (' + allTags[tag] + ')' ;
+//    /* [NEW] END LOOP: for each tag in allTags: */
+//   } 
+//    /* [NEW] add html from allTagshTML to tagList */
+//    tagList.innerHTML = allTagsHTML;
+// }
