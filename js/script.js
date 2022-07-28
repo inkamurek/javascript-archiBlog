@@ -185,6 +185,8 @@ function generateTags() {
       const tagHTML =
         '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
 
+        // console.log("tagHTML" , tagHTML)
+
       /* insert link into html variable */
       html = html + tagHTML;
 
@@ -193,23 +195,32 @@ function generateTags() {
       if(!allTags.hasOwnProperty(tag)) {
 
         /* [NEW] add tag to allTags object */
-        allTags[tag] = 1;
-      } else {
+        allTags[tag] = 1;}
+         else {
         allTags[tag]++;
       }
 
-      // console.log(html);
+      // console.log('HTML', html);
     }
 
     tagList.innerHTML = html;
+    console.log("HTML0" , html)
     console.log("tagList1" , tagList)
   }
 
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
-  console.log("tagList2" , tagList)
-  /* [NEW] add html from allTags to tagList */
-  // tagList.innerHTML = allTags.join(' ');
+
+  console.log("tagListNew" , tagList)
+  console.log("allTags" , allTags)
+
+
+
+
+//  
+
+
+
   // console.log(allTags);
 
   const tagsParams = calculateTagsParams(allTags);
@@ -222,11 +233,12 @@ function generateTags() {
    for(let tag in allTags){
     console.log("tag" , tag)
        /* [NEW] generate code of a link and add it ti allTagsHTML */
-      //  allTagsHTML += tag + ' (' + allTags[tag] + ')' ;
+       allTagsHTML += tag + ' (' + allTags[tag] + ')' ;
 
       console.log("allTags" , allTags)
 
-       const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
+      //  const tagLinkHTML = '<li><a href=#tag-' + calculateTagClass(allTags[tag], tagsParams) + '</a></li>'
+       const tagLinkHTML = '<li><a href="#tag-' + calculateTagClass(allTags[tag], tagsParams) + '"></a></li>';
        console.log('taglinkHTML:', tagLinkHTML);
 
        allTagsHTML += tagLinkHTML;
@@ -235,7 +247,6 @@ function generateTags() {
    /* [NEW] END LOOP: for each tag in allTags: */
   } 
 
-  console.log("tagList" , tagList)
    /* [NEW] add html from allTagshTML to tagList */
    tagList.innerHTML = allTagsHTML;
 }
