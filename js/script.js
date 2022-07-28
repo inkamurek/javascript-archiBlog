@@ -143,15 +143,16 @@ function calculateTagClass (count, params) {
   // classNumber = Math.floor( ( (count - 2) / (10 - 2) ) * optCloudClassCount + 1 );
   // classNumber = Math.floor( ( (count - 2) / (params.max - 2) ) * optCloudClassCount + 1 );
   // classNumber = Math.floor( ( (count - params.min) / (params.max - 2) ) * optCloudClassCount + 1 );
-  const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * optCloudClassCount + 1 );
+  // const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * optCloudClassCount + 1 );
 
   
-      //  const normalizedCount = count - params.min;
-      //  const normalizedMax = params.max - params.min;
-      //  const percentage = normalizedCount / normalizedMax;
-      //  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
-}
+       const normalizedCount = count - params.min;
+       const normalizedMax = params.max - params.min;
+       const percentage = normalizedCount / normalizedMax;
+       const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
 
+      return (optCloudClassPrefix, classNumber);
+}
 
 function generateTags() {
   /* find all articles */
@@ -211,17 +212,6 @@ function generateTags() {
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
 
-  console.log("tagListNew" , tagList)
-  console.log("allTags" , allTags)
-
-
-
-
-//  
-
-
-
-  // console.log(allTags);
 
   const tagsParams = calculateTagsParams(allTags);
   console.log('tagsParams:', tagsParams);
@@ -232,17 +222,14 @@ function generateTags() {
     /* [NEW] START LOOP: for each tag in allTags */
    for(let tag in allTags){
     console.log("tag" , tag)
+
        /* [NEW] generate code of a link and add it ti allTagsHTML */
        allTagsHTML += tag + ' (' + allTags[tag] + ')' ;
 
-      console.log("allTags" , allTags)
-
-      //  const tagLinkHTML = '<li><a href=#tag-' + calculateTagClass(allTags[tag], tagsParams) + '</a></li>'
-       const tagLinkHTML = '<li><a href="#tag-' + calculateTagClass(allTags[tag], tagsParams) + '"></a></li>';
+       const tagLinkHTML = '<li><a class="tag-size-' + calculateTagClass(allTags[tag], tagsParams) + '" href=#tag-' +  tag  +  '>' + tag + '</a></li>'
        console.log('taglinkHTML:', tagLinkHTML);
 
        allTagsHTML += tagLinkHTML;
-
 
    /* [NEW] END LOOP: for each tag in allTags: */
   } 
