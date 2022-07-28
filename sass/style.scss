@@ -122,3 +122,39 @@ body {
 li a span {
   padding: 10px 20px;
 }
+
+
+.tag-size-1 {
+display: inline;
+font-weight: bold;
+font-size: 12px;
+color: aqua;
+}
+
+.tag-size-2{
+  display: inline;
+  font-weight: bold;
+  font-size: 16px;
+  color: aquamarine;
+}
+
+.tag-size-3{
+  display: inline;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(50, 150, 116);
+}
+
+.tag-size-4{
+  display: inline;
+  font-weight: bold;
+  font-size: 24px;
+  color: rgb(31, 83, 66);
+}
+
+.tag-size-5{
+  display: inline;
+  font-weight: bold;
+  font-size: 28px;
+  color: rgb(0, 86, 3);
+}
