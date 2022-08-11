@@ -253,6 +253,15 @@ function generateTags() {
    /* [NEW] create variable for all links HTML code */
    let allTagsHTML = '';
 
+
+/////////////////////////////////////////////////////////////////////////////
+
+  //  const allTagsData = {tags: []};
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
     /* [NEW] START LOOP: for each tag in allTags */
    for(let tag in allTags){
     console.log("tag" , tag)
@@ -265,11 +274,35 @@ function generateTags() {
 
        allTagsHTML += tagLinkHTML;
 
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+      //  allTagsData.tags.push({
+      //   tag: tag,
+      //   count: allTags[tag],
+      //   className: calculateTagClass(allTags[tag], tagsParams)
+      // });
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
    /* [NEW] END LOOP: for each tag in allTags: */
   } 
 
    /* [NEW] add html from allTagshTML to tagList */
    tagList.innerHTML = allTagsHTML;
+
+   
+
+
+   /////////////////////////////////////////////////////////////////////////////
+
+  //  tagList.innerHTML = templates.tagCloudLink(allTagsData);
+  // console.log("allTagsData:" , allTagsData)
+/////////////////////////////////////////////////////////////////////////////
+
 }
 
 
