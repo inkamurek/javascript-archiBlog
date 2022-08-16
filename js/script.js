@@ -311,6 +311,10 @@ console.log("authorHTML",authorHTML)
       //  console.log('authorLinkHTML:', authorLinkHTML);
       //  allAuthorsHTML += authorLinkHTML;
 
+    //  const countAuthorData = {count:  calculateAuthorClass(allAuthors[author], authorsParams)} 
+    //  const countAuthor = templates.authorLink(countAuthorData);
+
+
       allAuthorsData.authors.push({
         author: author,
         count: allAuthors[author],
