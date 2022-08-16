@@ -140,57 +140,55 @@ function calculateTagClass (count, params) {
 }
 
 
-function generateTags() {
 
-  const articles = document.querySelectorAll(optArticleSelector);
 
-  for (let article of articles) {
-   
-    const tagList = article.querySelector(optArticleTagsSelector);
-
-    let html = '';
-
-    const articleTags = article.getAttribute('data-tags');
-    const articleTagsArray = articleTags.split(' ');
-
-    for (let tag of articleTagsArray) {
-     
-    const tagHTMLData = {id: tag, title: tag};
-    const tagHTML = templates.tagLink(tagHTMLData);
-console.log("tagHTML", tagHTML)
-      html = html + tagHTML;
-
-      if(!allTags.hasOwnProperty(tag)) {
-
-        allTags[tag] = 1;}
-         else {
-        allTags[tag]++;
-      }
-    }
-
-    tagList.innerHTML = html;
-  }
-
-  const tagList = document.querySelector(optTagsListSelector);
-  console.log('tagList:', tagList);
-  const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams:', tagsParams);
+  function generateTags() {
+    const articles = document.querySelectorAll(optArticleSelector);
   
-   const allTagsData = {tags: []};
-
-   for(let tag in allTags){
-
-       allTagsData.tags.push({
-        tag: tag,
-        count: allTags[tag],
-        className: calculateTagClass(allTags[tag], tagsParams)
-      });
-  } 
-
-   tagList.innerHTML = templates.tagCloudLink(allTagsData);
-  console.log('allTagsData:' , allTagsData);
-}
-
+    for (let article of articles) {
+     
+      const tagList = article.querySelector(optArticleTagsSelector);
+  
+      let html = '';
+  
+      const articleTags = article.getAttribute('data-tags');
+      const articleTagsArray = articleTags.split(' ');
+  
+      for (let tag of articleTagsArray) {
+       
+      const tagHTMLData = {tag: tag, title: tag};
+      const tagHTML = templates.tagLink(tagHTMLData);
+        html = html + tagHTML;
+  
+        if(!allTags.hasOwnProperty(tag)) {
+  
+          allTags[tag] = 1;}
+           else {
+          allTags[tag]++;
+        }
+      }
+  
+      tagList.innerHTML = html;
+    }
+  
+    const tagList = document.querySelector(optTagsListSelector);
+    const tagsParams = calculateTagsParams(allTags);
+    
+     const allTagsData = {tags: []};
+  
+     for(let tag in allTags){
+  
+         allTagsData.tags.push({
+          tag: tag,
+          count: allTags[tag],
+          className: calculateTagClass(allTags[tag], tagsParams)
+        });
+    } 
+    console.log(allTagsData)
+    const code = templates.tagCloudLink(allTagsData);
+    console.log(code)
+     tagList.innerHTML = code
+  }
 
 generateTags();
 
